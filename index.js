@@ -87,16 +87,39 @@ const titles = [
 //Array of authors and the book they wrote
 //"--- wrote --- in ---"
 
+
 //Sort books from oldest to most recent
+var old2newBooks = books.sort((a,b) => a.publishDate - b.publishDate);
+console.log(old2newBooks);
 
 //sort books alphabetically
+var alphabetically = books.sort((a,b) => a.name.localeCompare(b.name));
+console.log(alphabetically);
 
 //Find who wrote War and Peace
+var warNoPeace = books.find( b => b.name == 'War and Peace')
+var author = `${warNoPeace.authorFirst} ${warNoPeace.authorLast}`;
+console.log(author);
 
 //how many books were written before 1900?
+var oldBooksCount = books.filter( q => q.publishDate < 1900).length;
+console.log(oldBooksCount);
 
 //was there at least one book published within the last 100 years?
+const currentYear = new Date().getFullYear();
+//var anyRecentBooks = books.filter( q => q.publishDate > currentYear - 100).length > 0;
+//console.log(anyRecentBooks);
+var anyRecentBooks2 = books.some( q => q.publishDate > currentYear - 100);
+console.log(anyRecentBooks2);
 
 //was every book published within the last 100 years?
+//var anyOldBooks = books.filter( q => q.publishDate < currentYear - 100).length > 0;
+//console.log(!anyOldBooks);
+var anyOldBooks2 = books.every( q => q.publishDate > currentYear - 100);
+console.log(anyOldBooks2);
 
 //print a list of books that "includes" the genre historical
+var historical = books.filter(  h => h.genre.includes("historical"));
+console.log(historical);
+
+books
